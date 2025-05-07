@@ -58,7 +58,7 @@ const handleSubmit = async (e) => {
     setError("")
 
     try {
-      await login(email.trim(), password)
+      await login(email.trim(), password, userType)
       navigate("/patient") // Redirect to dashboard after successful login
     } catch (error) {
       setError(error.message || "Failed to log in. Please check your credentials.")

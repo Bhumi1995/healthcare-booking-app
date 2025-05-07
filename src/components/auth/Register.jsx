@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "../../context/AuthContext"
-import { Link } from "react-router-dom"
+// import { Link } from "react-router-dom"
 
 const Register = () => {
   const [name, setName] = useState("")
@@ -22,13 +22,15 @@ const Register = () => {
     if (password !== confirmPassword) {
       return setError("Passwords do not match")
     }
-
-    try {
-      await register(name, email, password)
-      navigate("/patient") // Redirect to dashboard after successful registration
-    } catch (error) {
-      setError(error.message || "Failed to create account")
-    }
+    register(name, email, password)
+    navigate("/login")
+    // Uncomment the following lines to enable registration functionality
+    // try {
+    //   console.log("Registering user:")
+    //   await register(name, email, password)
+    // } catch (error) {
+    //   setError(error.message || "Failed to create account")
+    // }
   }
 
   return (
@@ -87,9 +89,12 @@ const Register = () => {
             </div>
           </div>
 
-          <Link to='/login' type="submit" className="btn btn-primary">
+          {/* <Link to='/login' type="submit" className="btn btn-primary">
             Register
-          </Link>
+          </Link> */}
+          <button type="submit" className="btn btn-primary">
+          Register
+          </button>
         </form>
 
         <div className="auth-footer">
