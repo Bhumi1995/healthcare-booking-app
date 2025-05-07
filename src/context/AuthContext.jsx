@@ -34,15 +34,14 @@ export const AuthProvider = ({ children }) => {
           const user = JSON.parse(storedUser)
           setCurrentUser(user)
           // Auto-redirect if user is already logged in
-          if (user.userType === "patient") {
-            navigate("/patient")
-          } else {
-            navigate("/doctor")
-          }
+          // if (user.userType === "patient") {
+          //   navigate("/patient")
+          // } else {
+          //   navigate("/doctor")
+          // }
         } catch (error) {
-          console.error("Failed to parse user data", error)
+          console.error("Failed to parse user data", error)}
           localStorage.removeItem("user")
-        }
       }
       setLoading(false)
     }
@@ -50,14 +49,15 @@ export const AuthProvider = ({ children }) => {
     initializeAuth()
   }, [navigate])
 
-  const login = async (email, password) => {
+  const login = async (email, password, userType) => {
     try {
       const users = JSON.parse(localStorage.getItem("users")) || []
       console.log("All stored users:", users) // Debug log
       
       const user = users.find(u => 
         u.email.toLowerCase() === email.toLowerCase() && 
-        u.password === password
+        u.password === password &&
+        u.userType === userType
       )
       
       if (!user) {
@@ -93,7 +93,7 @@ export const AuthProvider = ({ children }) => {
       const newUser = {
         id: Date.now(),
         name,
-        email,
+        email: email.toLowerCase(),
         password,
         userType,
         createdAt: new Date().toISOString()
