@@ -167,7 +167,6 @@ h6 {
         margin-bottom: 0.5rem;
         font-weight: 500;
     }
-
     input,
     select,
     textarea {
@@ -188,6 +187,11 @@ h6 {
         resize: vertical;
     }
 
+    .field-error{
+        color: $danger-color;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+    }
     .radio-group {
         display: flex;
         gap: 1.5rem;
