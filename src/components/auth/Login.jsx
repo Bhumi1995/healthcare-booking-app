@@ -1,3 +1,5 @@
+
+
 "use client"
 
 import { useState } from "react"
@@ -11,55 +13,50 @@ const Login = () => {
   const [error, setError] = useState("")
   const [emailError, setEmailError] = useState("")
   const [passwordError, setPasswordError] = useState("")
+
   const navigate = useNavigate()
   const { login } = useAuth()
 
-  const validateEmail = (email) => {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    return re.test(email)
-  }
+  const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+  const validatePassword = (password) => password.length >= 6
 
-  const validatePassword = (password) => {
-    // At least 8 characters, at least one letter and one number
-    const re = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
-    return re.test(password)
-  }
 
-  const validateForm = () => {
-    let isValid = true
-    
-    // Email validation
-    if (!email) {
+  const handleEmailChange = (e) => {
+    const value = e.target.value
+    setEmail(value)
+    if (!value.trim()) {
       setEmailError("Email is required")
-      isValid = false
-    } else if (!validateEmail(email)) {
+    } else if (!validateEmail(value)) {
       setEmailError("Please enter a valid email address")
-      isValid = false
     } else {
       setEmailError("")
     }
+  }
 
-    // Password validation
-    if (!password) {
+  const handlePasswordChange = (e) => {
+    const value = e.target.value
+    setPassword(value)
+    if (!value.trim()) {
       setPasswordError("Password is required")
-      isValid = false
-    } else if (!validatePassword(password)) {
-      setPasswordError("Password must be at least 8 characters with at least one letter and one number")
-      isValid = false
+    } else if (!validatePassword(value)) {
+     setPasswordError("Password must be at least 6 characters")
     } else {
       setPasswordError("")
     }
-
-    return isValid
   }
 
-const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     setError("")
 
+    if (emailError || passwordError || !email || !password) {
+      setError("Please fill the all fields correctly.")
+      return
+    }
+
     try {
       await login(email.trim(), password, userType)
-      navigate("/patient") // Redirect to dashboard after successful login
+      navigate(userType === "doctor" ? "/doctor" : "/patient")
     } catch (error) {
       setError(error.message || "Failed to log in. Please check your credentials.")
     }
@@ -71,29 +68,29 @@ const handleSubmit = async (e) => {
         <h2>Login</h2>
         {error && <div className="error-message">{error}</div>}
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} noValidate>
           <div className="form-group">
             <label>Email</label>
-            <input 
-              type="email" 
-              value={email} 
-              onChange={(e) => setEmail(e.target.value)} 
-              className={emailError ? "input-error" : ""}
-              required 
+            <input
+              type="email"
+              value={email}
+              onChange={handleEmailChange}
+              // className={emailError ? "field-error" : ""}
+              required
             />
-            {emailError && <div className="error-message">{emailError}</div>}
+            {emailError && <div className="field-error">{emailError}</div>}
           </div>
 
           <div className="form-group">
             <label>Password</label>
-            <input 
-              type="password" 
-              value={password} 
-              onChange={(e) => setPassword(e.target.value)} 
-              className={passwordError ? "input-error" : ""}
-              required 
+            <input
+              type="password"
+              value={password}
+              onChange={handlePasswordChange}
+              // className={passwordError ? "field-error" : ""}
+              required
             />
-            {passwordError && <div className="error-message">{passwordError}</div>}
+            {passwordError && <div className="field-error">{passwordError}</div>}
           </div>
 
           <div className="form-group">
@@ -134,3 +131,4 @@ const handleSubmit = async (e) => {
 }
 
 export default Login
+
