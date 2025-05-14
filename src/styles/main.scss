@@ -21,29 +21,29 @@ $breakpoint-xl: 1200px;
 
 // Base styles
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    color: $text-color;
-    background-color: $body-bg;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: $text-color;
+  background-color: $body-bg;
 }
 
 a {
-    color: $primary-color;
-    text-decoration: none;
+  color: $primary-color;
+  text-decoration: none;
 
-    &:hover {
-        text-decoration: underline;
-    }
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 ul {
-    list-style: none;
+  list-style: none;
 }
 
 h1,
@@ -52,540 +52,546 @@ h3,
 h4,
 h5,
 h6 {
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-    line-height: 1.2;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  line-height: 1.2;
 }
 
 // Layout
 .app-container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: $card-bg;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  .logo {
+    h1 {
+      color: $primary-color;
+      font-size: 1.5rem;
+      margin: 0;
+    }
+  }
+
+  .user-info {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
-    background-color: $card-bg;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    gap: 1rem;
 
-    .logo {
-        h1 {
-            color: $primary-color;
-            font-size: 1.5rem;
-            margin: 0;
-        }
+    span {
+      font-weight: 500;
     }
-
-    .user-info {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-
-        span {
-            font-weight: 500;
-        }
-    }
+  }
 }
 
 .app-content {
-    display: flex;
-    flex: 1;
+  display: flex;
+  flex: 1;
 
-    .sidebar {
-        width: 250px;
-        background-color: $card-bg;
-        border-right: 1px solid $border-color;
-        padding: 1.5rem 0;
+  .sidebar {
+    width: 250px;
+    background-color: $card-bg;
+    border-right: 1px solid $border-color;
+    padding: 1.5rem 0;
 
-        nav {
-            ul {
-                li {
-                    a {
-                        display: block;
-                        padding: 0.75rem 1.5rem;
-                        color: $text-color;
-                        transition: all 0.2s ease;
+    nav {
+      ul {
+        li {
+          a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: $text-color;
+            transition: all 0.2s ease;
 
-                        &:hover {
-                            background-color: rgba($primary-color, 0.1);
-                            color: $primary-color;
-                            text-decoration: none;
-                        }
-                    }
-                }
+            &:hover {
+              background-color: rgba($primary-color, 0.1);
+              color: $primary-color;
+              text-decoration: none;
             }
+          }
         }
+      }
     }
+  }
 
-    .main-content {
-        flex: 1;
-        padding: 2rem;
-    }
+  .main-content {
+    flex: 1;
+    padding: 2rem;
+  }
 }
 
 // Auth pages
 .auth-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 2rem;
-    background-color: $body-bg;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background-color: $body-bg;
 }
 
 .auth-card {
-    width: 100%;
-    max-width: 450px;
-    padding: 2rem;
-    background-color: $card-bg;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 450px;
+  padding: 2rem;
+  background-color: $card-bg;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
-    h2 {
-        text-align: center;
-        margin-bottom: 1.5rem;
-        color: $primary-color;
-    }
+  h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: $primary-color;
+  }
 
-    .auth-footer {
-        margin-top: 1.5rem;
-        text-align: center;
-        font-size: 0.9rem;
-    }
+  .auth-footer {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+  }
 }
 
 // Forms
 .form-group {
-    margin-bottom: 1.25rem;
+  margin-bottom: 1.25rem;
+
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid $border-color;
+    border-radius: 4px;
+    font-size: 1rem;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 2px rgba($primary-color, 0.25);
+    }
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  .radio-group {
+    display: flex;
+    gap: 1.5rem;
 
     label {
-        display: block;
-        margin-bottom: 0.5rem;
-        font-weight: 500;
-    }
-    input,
-    select,
-    textarea {
-        width: 100%;
-        padding: 0.75rem;
-        border: 1px solid $border-color;
-        border-radius: 4px;
-        font-size: 1rem;
-
-        &:focus {
-            outline: none;
-            border-color: $primary-color;
-            box-shadow: 0 0 0 2px rgba($primary-color, 0.25);
-        }
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: normal;
+      cursor: pointer;
     }
 
-    textarea {
-        resize: vertical;
+    input[type="radio"] {
+      width: auto;
     }
+  }
+  .error-message {
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+  }
 
-    .field-error{
-            color: $danger-color;
-            font-size: 0.875rem;
-            margin-top: 0.25rem;
-    }
-    .radio-group {
-        display: flex;
-        gap: 1.5rem;
-
-        label {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: normal;
-            cursor: pointer;
-        }
-
-        input[type="radio"] {
-            width: auto;
-        }
-    }
-    .error-message {
-        color: #dc3545;
-        font-size: 0.875rem;
-        margin-top: 0.25rem;
-    }
-    
-    .input-error {
-        border-color: #dc3545;
-    }
+  .input-error {
+    border-color: #dc3545;
+  }
 }
 
 // Buttons
 .btn {
-    display: inline-block;
-    font-weight: 500;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    user-select: none;
-    border: 1px solid transparent;
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    border-radius: 4px;
-    transition: all 0.15s ease-in-out;
-    cursor: pointer;
+  display: inline-block;
+  font-weight: 500;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 4px;
+  transition: all 0.15s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba($primary-color, 0.25);
+  }
+
+  &.btn-sm {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+    border-radius: 3px;
+  }
+
+  &.btn-primary {
+    color: white;
+    background-color: $primary-color;
+    border-color: $primary-color;
 
     &:hover {
-        text-decoration: none;
+      background-color: darken($primary-color, 7.5%);
+      border-color: darken($primary-color, 10%);
     }
+  }
 
-    &:focus {
-        outline: none;
-        box-shadow: 0 0 0 3px rgba($primary-color, 0.25);
+  &.btn-success {
+    color: white;
+    background-color: $success-color;
+    border-color: $success-color;
+
+    &:hover {
+      background-color: darken($success-color, 7.5%);
+      border-color: darken($success-color, 10%);
     }
+  }
 
-    &.btn-sm {
-        padding: 0.375rem 0.75rem;
-        font-size: 0.875rem;
-        border-radius: 3px;
+  &.btn-danger {
+    color: white;
+    background-color: $danger-color;
+    border-color: $danger-color;
+
+    &:hover {
+      background-color: darken($danger-color, 7.5%);
+      border-color: darken($danger-color, 10%);
     }
-
-    &.btn-primary {
-        color: white;
-        background-color: $primary-color;
-        border-color: $primary-color;
-
-        &:hover {
-            background-color: darken($primary-color, 7.5%);
-            border-color: darken($primary-color, 10%);
-        }
-    }
-
-    &.btn-success {
-        color: white;
-        background-color: $success-color;
-        border-color: $success-color;
-
-        &:hover {
-            background-color: darken($success-color, 7.5%);
-            border-color: darken($success-color, 10%);
-        }
-    }
-
-    &.btn-danger {
-        color: white;
-        background-color: $danger-color;
-        border-color: $danger-color;
-
-        &:hover {
-            background-color: darken($danger-color, 7.5%);
-            border-color: darken($danger-color, 10%);
-        }
-    }
+  }
 }
 
 // Dashboard
 .dashboard {
-    h2 {
-        margin-bottom: 1.5rem;
+  h2 {
+    margin-bottom: 1.5rem;
+  }
+
+  .dashboard-welcome {
+    background-color: $card-bg;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+    h3 {
+      color: $primary-color;
+      margin-bottom: 0.5rem;
     }
 
-    .dashboard-welcome {
-        background-color: $card-bg;
-        padding: 1.5rem;
-        border-radius: 8px;
-        margin-bottom: 1.5rem;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    p {
+      color: $text-muted;
+      margin-bottom: 0;
+    }
+  }
 
-        h3 {
-            color: $primary-color;
-            margin-bottom: 0.5rem;
-        }
+  .dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
 
-        p {
-            color: $text-muted;
-            margin-bottom: 0;
-        }
+    .stat-card {
+      background-color: $card-bg;
+      padding: 1.25rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      text-align: center;
+
+      h4 {
+        color: $text-muted;
+        font-size: 0.875rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .stat-value {
+        font-size: 2rem;
+        font-weight: 600;
+        color: $primary-color;
+      }
+    }
+  }
+
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+
+    @media (min-width: $breakpoint-md) {
+      grid-template-columns: 2fr 1fr;
     }
 
-    .dashboard-stats {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 1rem;
-        margin-bottom: 1.5rem;
+    .dashboard-card {
+      background-color: $card-bg;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 
-        .stat-card {
-            background-color: $card-bg;
-            padding: 1.25rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            text-align: center;
+      h4 {
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid $border-color;
+      }
 
-            h4 {
-                color: $text-muted;
-                font-size: 0.875rem;
-                margin-bottom: 0.5rem;
-            }
+      .action-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
 
-            .stat-value {
-                font-size: 2rem;
-                font-weight: 600;
-                color: $primary-color;
-            }
+      .doctor-list-container {
+        overflow: hidden;
+        transition: max-height 0.5s ease-in-out;
+        max-height: 300px;
+
+        &.expanded {
+          max-height: 1000px; // enough to show all doctors
         }
+      }
     }
-
-    .dashboard-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-
-        @media (min-width: $breakpoint-md) {
-            grid-template-columns: 2fr 1fr;
-        }
-
-        .dashboard-card {
-            background-color: $card-bg;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-
-            h4 {
-                margin-bottom: 1rem;
-                padding-bottom: 0.5rem;
-                border-bottom: 1px solid $border-color;
-            }
-
-            .action-buttons {
-                display: flex;
-                flex-direction: column;
-                gap: 0.75rem;
-            }
-        }
-    }
+  }
 }
 
 // Appointment lists
 .appointment-list {
-    .appointment-item {
-        display: flex;
-        align-items: center;
-        padding: 0.75rem 0;
-        border-bottom: 1px solid $border-color;
+  .appointment-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid $border-color;
 
-        &:last-child {
-            border-bottom: none;
-        }
-
-        .appointment-date {
-            font-weight: 500;
-            margin-right: 1rem;
-        }
-
-        .appointment-time {
-            background-color: rgba($primary-color, 0.1);
-            color: $primary-color;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.875rem;
-            margin-right: 1rem;
-        }
-
-        .appointment-doctor,
-        .appointment-patient {
-            flex: 1;
-        }
-
-        .appointment-reason {
-            color: $text-muted;
-            font-size: 0.875rem;
-            max-width: 200px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
+    &:last-child {
+      border-bottom: none;
     }
+
+    .appointment-date {
+      font-weight: 500;
+      margin-right: 1rem;
+    }
+
+    .appointment-time {
+      background-color: rgba($primary-color, 0.1);
+      color: $primary-color;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.875rem;
+      margin-right: 1rem;
+    }
+
+    .appointment-doctor,
+    .appointment-patient {
+      flex: 1;
+    }
+
+    .appointment-reason {
+      color: $text-muted;
+      font-size: 0.875rem;
+      max-width: 200px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
 }
 
 .doctor-list {
-    .doctor-item {
-        padding: 0.75rem 0;
-        border-bottom: 1px solid $border-color;
+  .doctor-item {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid $border-color;
 
-        &:last-child {
-            border-bottom: none;
-        }
-
-        .doctor-name {
-            font-weight: 500;
-        }
-
-        .doctor-specialty {
-            color: $text-muted;
-            font-size: 0.875rem;
-        }
+    &:last-child {
+      border-bottom: none;
     }
+
+    .doctor-name {
+      font-weight: 500;
+    }
+
+    .doctor-specialty {
+      color: $text-muted;
+      font-size: 0.875rem;
+    }
+  }
 }
 
 // Appointment booking
 .book-appointment {
-    .appointment-form {
-        background-color: $card-bg;
-        padding: 1.5rem;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        max-width: 600px;
-    }
+  .appointment-form {
+    background-color: $card-bg;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    max-width: 600px;
+  }
 }
 
 // Appointment management
 .my-appointments,
 .manage-appointments {
-    .filter-controls {
+  .filter-controls {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1.5rem;
+
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      select {
+        padding: 0.375rem 0.75rem;
+        border: 1px solid $border-color;
+        border-radius: 4px;
+      }
+    }
+  }
+
+  .empty-state {
+    background-color: $card-bg;
+    padding: 2rem;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+    p {
+      color: $text-muted;
+    }
+  }
+
+  .appointments-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+
+    @media (min-width: $breakpoint-lg) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .appointment-card {
+      background-color: $card-bg;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+
+      .appointment-header {
         display: flex;
-        justify-content: flex-end;
-        margin-bottom: 1.5rem;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        background-color: rgba($primary-color, 0.05);
 
-        .filter-group {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-
-            select {
-                padding: 0.375rem 0.75rem;
-                border: 1px solid $border-color;
-                border-radius: 4px;
-            }
+        h4 {
+          margin: 0;
         }
+
+        .appointment-status {
+          padding: 0.25rem 0.5rem;
+          border-radius: 4px;
+          font-size: 0.75rem;
+          font-weight: 600;
+          text-transform: uppercase;
+
+          &.status-confirmed {
+            background-color: rgba($success-color, 0.1);
+            color: $success-color;
+          }
+
+          &.status-pending {
+            background-color: rgba($warning-color, 0.1);
+            color: darken($warning-color, 15%);
+          }
+
+          &.status-cancelled {
+            background-color: rgba($danger-color, 0.1);
+            color: $danger-color;
+          }
+
+          &.status-completed {
+            background-color: rgba($info-color, 0.1);
+            color: $info-color;
+          }
+        }
+      }
+
+      .appointment-details {
+        padding: 1rem;
+
+        .detail-item {
+          display: flex;
+          margin-bottom: 0.5rem;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+
+          .detail-label {
+            font-weight: 500;
+            width: 80px;
+          }
+
+          .detail-value {
+            flex: 1;
+          }
+        }
+      }
+
+      .appointment-actions {
+        display: flex;
+        gap: 0.5rem;
+        padding: 0 1rem 1rem;
+      }
     }
-
-    .empty-state {
-        background-color: $card-bg;
-        padding: 2rem;
-        text-align: center;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-
-        p {
-            color: $text-muted;
-        }
-    }
-
-    .appointments-list {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 1rem;
-
-        @media (min-width: $breakpoint-lg) {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .appointment-card {
-            background-color: $card-bg;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            overflow: hidden;
-
-            .appointment-header {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 1rem;
-                background-color: rgba($primary-color, 0.05);
-
-                h4 {
-                    margin: 0;
-                }
-
-                .appointment-status {
-                    padding: 0.25rem 0.5rem;
-                    border-radius: 4px;
-                    font-size: 0.75rem;
-                    font-weight: 600;
-                    text-transform: uppercase;
-
-                    &.status-confirmed {
-                        background-color: rgba($success-color, 0.1);
-                        color: $success-color;
-                    }
-
-                    &.status-pending {
-                        background-color: rgba($warning-color, 0.1);
-                        color: darken($warning-color, 15%);
-                    }
-
-                    &.status-cancelled {
-                        background-color: rgba($danger-color, 0.1);
-                        color: $danger-color;
-                    }
-
-                    &.status-completed {
-                        background-color: rgba($info-color, 0.1);
-                        color: $info-color;
-                    }
-                }
-            }
-
-            .appointment-details {
-                padding: 1rem;
-
-                .detail-item {
-                    display: flex;
-                    margin-bottom: 0.5rem;
-
-                    &:last-child {
-                        margin-bottom: 0;
-                    }
-
-                    .detail-label {
-                        font-weight: 500;
-                        width: 80px;
-                    }
-
-                    .detail-value {
-                        flex: 1;
-                    }
-                }
-            }
-
-            .appointment-actions {
-                display: flex;
-                gap: 0.5rem;
-                padding: 0 1rem 1rem;
-            }
-        }
-    }
+  }
 }
 
 // Error message
 .error-message {
-    background-color: rgba($danger-color, 0.1);
-    color: $danger-color;
-    padding: 0.75rem;
-    border-radius: 4px;
-    margin-bottom: 1rem;
+  background-color: rgba($danger-color, 0.1);
+  color: $danger-color;
+  padding: 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
 }
 
 // Responsive adjustments
 @media (max-width: $breakpoint-md) {
-    .app-content {
-        flex-direction: column;
+  .app-content {
+    flex-direction: column;
 
-        .sidebar {
-            width: 100%;
-            border-right: none;
-            border-bottom: 1px solid $border-color;
-            padding: 0.75rem 0;
+    .sidebar {
+      width: 100%;
+      border-right: none;
+      border-bottom: 1px solid $border-color;
+      padding: 0.75rem 0;
 
-            nav ul {
-                display: flex;
-                overflow-x: auto;
+      nav ul {
+        display: flex;
+        overflow-x: auto;
 
-                li a {
-                    padding: 0.5rem 1rem;
-                    white-space: nowrap;
-                }
-            }
+        li a {
+          padding: 0.5rem 1rem;
+          white-space: nowrap;
         }
+      }
     }
+  }
 }
