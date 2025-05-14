@@ -1,9 +1,11 @@
+
+
 "use client"
 
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "../../context/AuthContext"
-import { Link } from "react-router-dom"
+// import { Link } from "react-router-dom"
 
 const Register = () => {
   const [name, setName] = useState("")
@@ -12,22 +14,73 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("")
   const [userType, setUserType] = useState("patient")
   const [error, setError] = useState("")
+  const [formSubmitted, setFormSubmitted] = useState(false)
   const navigate = useNavigate()
   const { register } = useAuth()
 
+  // Track which fields have been touched
+  const [touched, setTouched] = useState({
+    name: false,
+    email: false,
+    password: false,
+    confirmPassword: false,
+  })
+
+  // Validation functions
+  const getNameError = () => {
+    if (!name.trim()) return "Name is required"
+    if (name.trim().length < 4) return "Name must be at least 4 characters"
+    return ""
+  }
+
+  const getEmailError = () => {
+    if (!email) return "Email is required"
+    if (!/\S+@\S+\.\S+/.test(email)) return "Please enter a valid email address"
+    return ""
+  }
+
+  const getPasswordError = () => {
+    if (!password) return "Password is required"
+    if (password.length < 6) return "Password must be at least 6 characters"
+    return ""
+  }
+
+  const getConfirmPasswordError = () => {
+    if (!confirmPassword) return "Please confirm your password"
+    if (password !== confirmPassword) return "Passwords do not match"
+    return ""
+  }
+
+  // Check if the form has any errors
+  const hasErrors = () => {
+    return !!(getNameError() || getEmailError() || getPasswordError() || getConfirmPasswordError())
+  }
+
+  // Handle field changes
+  const handleChange = (field, value, setter) => {
+    setter(value)
+    setTouched((prev) => ({ ...prev, [field]: true }))
+
+    // Clear global error when user starts typing
+    if (formSubmitted) {
+      setError("")
+    }
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setError("")
+    setFormSubmitted(true)
 
-    if (password !== confirmPassword) {
-      return setError("Passwords do not match")
+    // Check if there are any validation errors
+    if (hasErrors()) {
+      return setError("Please fill all the fields correctly")
     }
 
     try {
       await register(name, email, password)
-      navigate("/patient") // Redirect to dashboard after successful registration
-    } catch (error) {
-      setError(error.message || "Failed to create account")
+      navigate("/login")
+    } catch (err) {
+      setError(err.message || "Registration failed")
     }
   }
 
@@ -40,17 +93,26 @@ const Register = () => {
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label>Full Name</label>
-            <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
+            <input type="text" value={name} onChange={(e) => handleChange("name", e.target.value, setName)} />
+            {touched.name && getNameError() && <div className="field-error">{getNameError()}</div>}
           </div>
 
           <div className="form-group">
             <label>Email</label>
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+            <input type="email" value={email} onChange={(e) => handleChange("email", e.target.value, setEmail)} />
+            {touched.email && getEmailError() && <div className="field-error">{getEmailError()}</div>}
           </div>
 
           <div className="form-group">
             <label>Password</label>
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => handleChange("password", e.target.value, setPassword)}
+            />
+            {touched.password && getPasswordError() && (
+              <div className="field-error">{getPasswordError()}</div>
+            )}
           </div>
 
           <div className="form-group">
@@ -58,9 +120,11 @@ const Register = () => {
             <input
               type="password"
               value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
+              onChange={(e) => handleChange("confirmPassword", e.target.value, setConfirmPassword)}
             />
+            {touched.confirmPassword && getConfirmPasswordError() && (
+              <div className="field-error">{getConfirmPasswordError()}</div>
+            )}
           </div>
 
           <div className="form-group">
@@ -87,9 +151,9 @@ const Register = () => {
             </div>
           </div>
 
-          <Link to='/login' type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary">
             Register
-          </Link>
+          </button>
         </form>
 
         <div className="auth-footer">
@@ -101,3 +165,4 @@ const Register = () => {
 }
 
 export default Register
+
