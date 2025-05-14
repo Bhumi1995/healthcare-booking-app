@@ -78,7 +78,7 @@ const Login = () => {
               // className={emailError ? "field-error" : ""}
               required
             />
-            {emailError && <div className="field-error">{emailError}</div>}
+            {emailError && <div className="error-message">{emailError}</div>}
           </div>
 
           <div className="form-group">
@@ -90,7 +90,7 @@ const Login = () => {
               // className={passwordError ? "field-error" : ""}
               required
             />
-            {passwordError && <div className="field-error">{passwordError}</div>}
+            {passwordError && <div className="error-message">{passwordError}</div>}
           </div>
 
           <div className="form-group">

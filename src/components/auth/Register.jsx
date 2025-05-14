@@ -94,13 +94,13 @@ const Register = () => {
           <div className="form-group">
             <label>Full Name</label>
             <input type="text" value={name} onChange={(e) => handleChange("name", e.target.value, setName)} />
-            {touched.name && getNameError() && <div className="field-error">{getNameError()}</div>}
+            {touched.name && getNameError() && <div className="error-message">{getNameError()}</div>}
           </div>
 
           <div className="form-group">
             <label>Email</label>
             <input type="email" value={email} onChange={(e) => handleChange("email", e.target.value, setEmail)} />
-            {touched.email && getEmailError() && <div className="field-error">{getEmailError()}</div>}
+            {touched.email && getEmailError() && <div className="error-message">{getEmailError()}</div>}
           </div>
 
           <div className="form-group">
@@ -111,7 +111,7 @@ const Register = () => {
               onChange={(e) => handleChange("password", e.target.value, setPassword)}
             />
             {touched.password && getPasswordError() && (
-              <div className="field-error">{getPasswordError()}</div>
+              <div className="error-message">{getPasswordError()}</div>
             )}
           </div>
 
@@ -123,7 +123,7 @@ const Register = () => {
               onChange={(e) => handleChange("confirmPassword", e.target.value, setConfirmPassword)}
             />
             {touched.confirmPassword && getConfirmPasswordError() && (
-              <div className="field-error">{getConfirmPasswordError()}</div>
+              <div className="error-message">{getConfirmPasswordError()}</div>
             )}
           </div>
 
