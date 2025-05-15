@@ -3,6 +3,7 @@
 import { createContext, useState, useEffect, useContext } from "react"
 import { useAuth } from "./AuthContext"
 
+
 // Create context
 const AppointmentContext = createContext()
 
