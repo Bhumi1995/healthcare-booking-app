@@ -77,7 +77,7 @@ const Register = () => {
     }
 
     try {
-      await register(name, email, password)
+      await register(name, email, password, userType)
       navigate("/login")
     } catch (err) {
       setError(err.message || "Registration failed")
